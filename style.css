@@ -1,0 +1,31 @@
+.carousel-item {
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+}
+
+.carousel-item h1 {
+    margin: 0;
+  color: white;
+}
+
+.carousel-item a {
+  background-color: #660099;
+}
+
+.carousel-item a:hover {
+  background-color: #ff6600;
+}
+
+.firstcaro {
+  
+  background-image: url("https://cdn.discordapp.com/attachments/745506966675259443/762483537537662986/2020-10-4_2-16-29-734.png");
+}
+
+.secondcaro {
+  background-image: url("https://cdn.discordapp.com/attachments/745506966675259443/762184240623648768/767-F_xp11_-_2020-10-04_00.45.05.png");
+}
+
+.thirdcaro {
+  background-image: url("https://media.discordapp.net/attachments/740708095302565978/762211188616331284/unknown.png?width=1204&height=677");
+}

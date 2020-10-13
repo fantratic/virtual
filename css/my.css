@@ -1,0 +1,183 @@
+html {
+
+scroll-behavior: smooth;
+}
+
+
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+    .sticky + .content {
+  padding-top: 60px;
+}
+
+
+    body {
+
+margin: 0;
+padding: 0;
+
+}
+
+#backgroundtext {
+
+text-align: center;
+padding: 190px;
+font-family: 'Quattrocento', serif;
+font-weight: 700;
+font-size: 50px;
+color: #ffffff;
+margin-block-end: 15px;
+margin-block-start: 0px;
+margin-bottom: 15px;
+margin-inline-end: 0px;
+margin-inline-start: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+overflow-wrap: break-word;
+text-size-adjust: 100%;
+-webkit-font-smoothing: antialiased;
+
+
+}
+#background {
+align-items: center;
+line-height: 25px;
+position: relative;
+text-size-adjust: 100%;
+display: block;
+background-color: #2a8fdb;
+width: 915px;
+height: 396px;
+text-align: center;
+margin: 0 auto;
+
+
+}
+
+
+
+
+
+
+    .highlight {
+
+        color: black;
+    }
+
+    .bodypg {
+
+        display: block;
+        margin: 0 auto;
+        font-family: 'Lato', sans-serif;
+        font-size: 19px !important;
+        text-align: center;
+        padding-top: 3%;
+    }
+
+
+    #navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  display : flex;
+        z-index: 9999;
+  justify-content: center;
+text-transform: uppercase;
+}
+
+#nav {
+  float: left;
+            display: table-column;
+}
+
+#link {
+  display: block;
+  color: #b9b9b9;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+    transition: color 500ms linear;
+
+}
+
+/* Change the link color to #111 (black) on hover */
+#link:hover {
+
+    /* transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay]; */
+  color: black;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropbtn:hover {
+  background-color: black;
+}
+
+
+    #something {
+
+        height: 1000px;
+    }
+
+    #footer {
+        background-color: #ffffff;
+        position: relative;
+        height: 100px;
+        margin-top: -100px;
+        clear: both;
+        box-shadow: 2px -1px 10px 1px black;
+    }
