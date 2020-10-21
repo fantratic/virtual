@@ -78,6 +78,40 @@ exit;
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#" style="font-size:30px;"><span style="color: #660099;">Fed</span><span style="color: #ff6600;">Ex</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/downloads">Downloads</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+            <?php
+            if ($_SESSION['loggedin']) {
+                echo '<li class="nav-item">
+                    <a class="nav-link" href="logout.php">Log Out</a>
+                </li>';
+            } else {
+                echo '<li class="nav-item">
+                    <a class="nav-link" href="login.php">Log In</a>
+                </li>';
+                echo '<li class="nav-item">
+                    <a class="nav-link" href="register.php">Sign Up</a>
+                </li>';
+            }
+            ?>
+        </ul>
+
+    </div>
+</nav>
 	<div class="container" style="margin-top: 100px;">
 		<div class="row justify-content-center">
 			<div class="col-md-6 col-md-offset-3" align="center">
