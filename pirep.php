@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     if(empty($airline) || empty($aircrafttype) || empty($flightnumber) || empty($depicao) || empty($arricao) || empty($flighttime) || empty($blockfuel) || empty($cargoweight) || empty($route) || empty($cruiseflightlevel)) {
         $msg = "One of the fields were empty! Please refile the PIREP!";
     } else {
-        $sql = $con->prepare();
+        $sql = $con->prepare("INSERT INTO pirep ()");
     }
 } else {
     $msg = "Please retry to submit the form and try again. If that does not work, please send an email to alex@skycargovirtual.com";

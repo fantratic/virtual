@@ -25,6 +25,8 @@ if (isset($_POST['submit'])) {
         $sql->bind_param('s', $email);
         $sql->execute();
         $result = $sql->get_result();
+        $sql->bind_result($id);
+
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
             if (password_verify($password, $data['password'])) {
@@ -38,6 +40,8 @@ if (isset($_POST['submit'])) {
                         if($row['isEmailConfirmed'] == 1) {
                             // Store data in session variables
                     $_SESSION["loggedin"] = true;
+
+                    $_SESSION['id'] = $id;
 
                     $_SESSION["username"] = $email;
 
