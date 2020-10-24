@@ -1,14 +1,16 @@
 <?php
 session_start();
+$userid = $_SESSION['id'];
 require 'inc/connect.php';
 $msg = "";
 
-/*if (!isset($_SESSION['loggedin']) && !$_SESSION["loggedin"] === true){
+if (!isset($_SESSION['loggedin']) && !$_SESSION["loggedin"] === true){
     header("Location: login.php");
     exit;
-}*/
+}
 
 if (isset($_POST['submit'])) {
+    var_dump($userid);
     $airline = $_POST['airline'];
     $aircrafttype = $_POST['aircrafttype'];
     $flightnumber = $_POST['flightnumber'];
@@ -20,11 +22,16 @@ if (isset($_POST['submit'])) {
     $route = $_POST['route'];
     $cruiseflightlevel = $_POST['cruiseflightlevel'];
     $remarks = $_POST['remarks'];
-
+    $isAccepted = 0;
     if(empty($airline) || empty($aircrafttype) || empty($flightnumber) || empty($depicao) || empty($arricao) || empty($flighttime) || empty($blockfuel) || empty($cargoweight) || empty($route) || empty($cruiseflightlevel)) {
         $msg = "One of the fields were empty! Please refile the PIREP!";
     } else {
-        $sql = $con->prepare("INSERT INTO pirep (userid)");
+        if ($sql = $con->prepare("INSERT INTO pirep (userid,isAccepted,airline,aircrafttype,flightnumber,depicao,arricao,flighttime,blockfuel,cargoweight,route,cruiseflightlevel,remarks) VALUES ?,?,?,?,?,?,?,?,?,?,?,?,?")) {
+            $sql->bind_param('sssssssssssss', $id, $isAccepted, $airline, $aircrafttype, $flightnumber, $depicao, $arricao, $flighttime, $blockfuel, $cargoweight, $route, $cruiseflightlevel, $remarks);
+            $sql->execute();
+            die("passed execution");
+
+        }
     }
 } else {
     $msg = "Please retry to submit the form and try again. If that does not work, please send an email to alex@skycargovirtual.com";
@@ -84,8 +91,10 @@ if (isset($_POST['submit'])) {
 
     </div>
 </nav>
+
 <div class="container-fluid">
-    <form method="post">
+    <?php if ($msg != "") echo $msg . "<br><br>" ?>
+    <form method="post" action="pirep.php">
         <div class="form-group">
             <label>Airline</label>
             <div class="form-check">
@@ -109,55 +118,55 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="form-group">
             <label for="aircrafttype">Aircraft Type</label>
-            <input type="text" class="form-control" id="aircrafttype" aria-describedby="text">
+            <input type="text" class="form-control" name="aircrafttype" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="flightnumber">Flight Number</label>
-            <input type="text" class="form-control" id="flightnumber" aria-describedby="text">
+            <input type="text" class="form-control" name="flightnumber" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="depicao">Departure ICAO</label>
-            <input type="text" class="form-control" id="depicao" aria-describedby="text">
+            <input type="text" class="form-control" name="depicao" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="arricao">Arrival ICAO</label>
-            <input type="text" class="form-control" id="arricao" aria-describedby="text">
+            <input type="text" class="form-control" name="arricao" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="flighttime">Flight Time</label>
-            <input type="text" class="form-control" id="flighttime" aria-describedby="flighttimedisplay">
+            <input type="text" class="form-control" name="flighttime" aria-describedby="flighttimedisplay">
             <small id="flighttimedisplay">Display as __h__m</small>
         </div>
         <div class="form-group">
             <label for="blockfuel">Block Fuel [LBS]</label>
-            <input type="text" class="form-control" id="blockfuel" aria-describedby="text">
+            <input type="text" class="form-control" name="blockfuel" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="cargoweight">Cargo Weight [LBS]</label>
-            <input type="text" class="form-control" id="cargoweight" aria-describedby="text">
+            <input type="text" class="form-control" name="cargoweight" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="route">Route</label>
-            <input type="text" class="form-control" id="route" aria-describedby="text">
+            <input type="text" class="form-control" name="route" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="cruiseflightlevel">Cruise Flight Level</label>
-            <input type="text" class="form-control" id="cruiseflightlevel" aria-describedby="text">
+            <input type="text" class="form-control" name="cruiseflightlevel" aria-describedby="text">
 
         </div>
         <div class="form-group">
             <label for="remarks">Remarks</label>
-            <input type="text" class="form-control" id="remarks" aria-describedby="text">
+            <input type="text" class="form-control" name="remarks" aria-describedby="text">
 
         </div>
-        <input type="submit" class="btn btn-primary" value="Submit Form">
+        <input class="btn btn-primary" type="submit" name="submit" value="Submit Form">
     </form>
 </div>
 

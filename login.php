@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 session_start();
 require 'inc/connect.php';
 $msg = "";
@@ -25,17 +28,20 @@ if (isset($_POST['submit'])) {
         $sql->bind_param('s', $email);
         $sql->execute();
         $result = $sql->get_result();
-        $sql->bind_result($id);
+
 
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
             if (password_verify($password, $data['password'])) {
-                if ($sql = $con->prepare("SELECT isEmailConfirmed FROM users WHERE email = ?"))
+                if ($sql = $con->prepare("SELECT id, isEmailConfirmed FROM users WHERE email = ?"))
                 {
                     $sql->bind_param('s', $email);
                     $sql->execute();
                     $result = $sql->get_result();
-
+                    $sql->bind_result($id, $isemailconfirmed);
+                    while ($sql->fetch()) {
+                        var_dump($id);
+                    }
                     while($row = $result->fetch_assoc()) {
                         if($row['isEmailConfirmed'] == 1) {
                             // Store data in session variables
@@ -45,8 +51,10 @@ if (isset($_POST['submit'])) {
 
                     $_SESSION["username"] = $email;
 
+                    var_dump($id);
+
                     // Redirect user to welcome page
-                    header("location: index.php");
+                   // header("location: index.php");
                     exit;
                         } else {
                             echo "Your account is not verified, please check your email!";
