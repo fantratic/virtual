@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 session_start();
 $userid = $_SESSION['id'];
 require 'inc/connect.php';
@@ -10,7 +12,6 @@ if (!isset($_SESSION['loggedin']) && !$_SESSION["loggedin"] === true){
 }
 
 if (isset($_POST['submit'])) {
-    var_dump($userid);
     $airline = $_POST['airline'];
     $aircrafttype = $_POST['aircrafttype'];
     $flightnumber = $_POST['flightnumber'];
@@ -26,8 +27,8 @@ if (isset($_POST['submit'])) {
     if(empty($airline) || empty($aircrafttype) || empty($flightnumber) || empty($depicao) || empty($arricao) || empty($flighttime) || empty($blockfuel) || empty($cargoweight) || empty($route) || empty($cruiseflightlevel)) {
         $msg = "One of the fields were empty! Please refile the PIREP!";
     } else {
-        if ($sql = $con->prepare("INSERT INTO pirep (userid,isAccepted,airline,aircrafttype,flightnumber,depicao,arricao,flighttime,blockfuel,cargoweight,route,cruiseflightlevel,remarks) VALUES ?,?,?,?,?,?,?,?,?,?,?,?,?")) {
-            $sql->bind_param('sssssssssssss', $id, $isAccepted, $airline, $aircrafttype, $flightnumber, $depicao, $arricao, $flighttime, $blockfuel, $cargoweight, $route, $cruiseflightlevel, $remarks);
+        if ($sql = $con->prepare("INSERT INTO pireps (userid,isAccepted,airline,aircrafttype,flightnumber,depicao,arricao,flighttime,blockfuel,cargoweight,route,cruiseflightlevel,remarks) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
+            $sql->bind_param('sssssssssssss', $userid, $isAccepted, $airline, $aircrafttype, $flightnumber, $depicao, $arricao, $flighttime, $blockfuel, $cargoweight, $route, $cruiseflightlevel, $remarks);
             $sql->execute();
             die("passed execution");
 

@@ -39,19 +39,16 @@ if (isset($_POST['submit'])) {
                     $sql->execute();
                     $result = $sql->get_result();
                     $sql->bind_result($id, $isemailconfirmed);
-                    while ($sql->fetch()) {
-                        var_dump($id);
-                    }
+
                     while($row = $result->fetch_assoc()) {
                         if($row['isEmailConfirmed'] == 1) {
+
                             // Store data in session variables
                     $_SESSION["loggedin"] = true;
 
-                    $_SESSION['id'] = $id;
+                    $_SESSION['id'] = $row['id'];
 
                     $_SESSION["username"] = $email;
-
-                    var_dump($id);
 
                     // Redirect user to welcome page
                    // header("location: index.php");
