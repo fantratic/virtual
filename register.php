@@ -46,8 +46,8 @@ $msg = "";
 					$con->error_list;*/
 	
 	
-					if ($stmt = $con->prepare("INSERT INTO users (name,email,password,isEmailConfirmed,token,discord) VALUES (?, ?, ?, ?, ?, ?)")) {
-						$stmt->bind_param("sssiss", $name, $email, $hashedPassword, $isEmailConfirmed, $token, $discord);
+					if ($stmt = $con->prepare("INSERT INTO users (name,email,password,isEmailConfirmed,isApplicationAccepted,isAdmin,token,discord) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+						$stmt->bind_param("sssiiiss", $name, $email, $hashedPassword, $isEmailConfirmed, 0, 0, $token, $discord);
 						$stmt->execute();
 						$stmt->store_result();
 						$stmt->close();
@@ -103,7 +103,7 @@ try{
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
+    <title>Register | Sky Cargo Virtual</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
